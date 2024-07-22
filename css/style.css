@@ -172,8 +172,8 @@ footer{
   text-align: center;
 }
 
-/* Media Queries 768px */
-@media(min-width: 400px){
+/* Media Queries */
+@media(max-width: 768px){
   header #branding,
   header nav,
   header nav li,
