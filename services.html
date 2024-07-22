@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Affordable and professional web design">
+	  <meta name="keywords" content="web design, affordable web design, professional web design">
+  	<meta name="author" content="Brad Traversy">
+    <title>A2Z ROBO | Code</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="img/A2ZLOGO.png">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div id="branding">
+          <h1><span class="highlight">A2Z</span> ROBO</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li class="current"><a href="services.html">Code</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!--<section id="newsletter">
+      <div class="container">
+        <h1>Welcome to A2Z ROBO</h1>
+        <form>
+          <input type="email" placeholder="Enter Email..." required>
+          <button type="submit" class="button_1">Subscribe</button>
+        </form>
+      </div>
+    </section>-->
+
+    <section id="main">
+      <div class="container">
+        <article id="main-col">
+          <h1 class="page-title">Projects Code</h1>
+          <ul id="services">
+            <li>      
+              <a href="led controller.html" ><img src="img/led control.jpg" height="120">
+              <h3>LED BRIGHTNESS CONTROLLER</h3></a>           
+            </li>
+            <li>
+              <a href="Password Stealer.html" ><img src="img/digispark.jfif" height="120">
+                <h3>Digispark Password Stealer</h3></a>
+            </li>
+            <!--<li>
+              <a href="light meter.html" ><img src="img/LIGHT METER.jpg" height="120">
+                <h3>Webserver Light Meter</h3></a>
+            </li>-->
+            <li>
+              <a href="ir swich.html" ><img src="img/IR Swich.jpg" height="120">
+                <h3>4 Channel IR Swich With EEPROM</h3></a>
+            </li>
+          </ul>
+        </article>
+
+        <!--<aside id="sidebar">
+          <div class="dark">
+            <h3>Get A Quote</h3>
+            <form class="quote">
+  						<div>
+  							<label>Name</label><br>
+  							<input type="text" placeholder="Name">
+  						</div>
+  						<div>
+  							<label>Email</label><br>
+  							<input type="email" placeholder="Email Address">
+  						</div>
+  						<div>
+  							<label>Message</label><br>
+  							<textarea placeholder="Message"></textarea>
+  						</div>
+  						<button class="button_1" type="submit">Send</button>
+					</form>
+          </div>
+        </aside>-->
+      </div>
+    </section>
+
+    <footer>
+      <p>A2Z ROBO, Copyright &copy; 2024</p>
+      <p id="trade">-Shivam.R.Kushvaha</p>
+    </footer>
+    <script>
+      let startX;
+      document.addEventListener('touchstart',function(e) {
+        startX =e.touches[0].clientX;
+      });
+      document.addEventListener('touchend',function(e) {
+        let endX = e.changedTouches[0].clientX;
+        if (startX - endX > 100) {
+          //swiped left to right
+          window.location.href = 'about.html';
+        } else if (endX - startX > 100) {
+          //Swipe right to left
+          window.location.href = 'index.html';
+        }
+      });
+    </script>
+  </body>
+</html>

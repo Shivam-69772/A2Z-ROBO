@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Affordable and professional web design">
+	  <meta name="keywords" content="web design, affordable web design, professional web design">
+  	<meta name="author" content="Brad Traversy">
+    <title>A2Z ROBO | Welcome</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="img/A2ZLOGO.png">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div id="branding">
+          <h1><span class="highlight">A2Z</span> ROBO</h1>
+        </div>
+        <nav>
+          <ul>
+            <li class="current"><a href="index.html">Home</a></li>
+            <li><a href="services.html">Code</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section id="showcase">
+      <div class="container">
+        <h1>Electronic and IOT Projects</h1>
+        <p>Our Project involves developing smart systems that can automate various tasks and processes using the Internet of Things (IOT) technology. We aim to create solutions that improve efficiency, save energy, and enhance convenience by connecting and controlling devices remotely through the internate.</p>
+      </div>
+    </section>
+
+    <section id="newsletter">
+      <div class="container">
+        <h1>Welcome to A2Z ROBO</h1>
+        <!--<form>
+          <input type="email" placeholder="Enter Email..." required>
+          <button type="submit" class="button_1">Subscribe</button>
+        </form>-->
+      </div>
+    </section>
+
+    <section id="boxes">
+      <div class="container">
+        <div class="box">
+          <a href="led controller.html" ><img src="img/led control.jpg" height="120">
+            <h3>LED BRIGHTNESS CONTROLLER</h3></a>
+        </div>
+        <div class="box">
+          <a href="Password Stealer.html" ><img src="img/digispark.jfif" height="120">
+            <h3>Digispark Password Stealer</h3></a>
+        </div>
+        <!--<div class="box">
+          <img src="./img/logo_brush.png">
+          <h3>Graphic Design</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mi augue, viverra sit amet ultricies</p>
+        </div>-->
+      </div>
+    </section>
+
+    <footer>
+      <p>A2Z ROBO, Copyright &copy; 2024</p>
+      <p id="trade">-Shivam.R.Kushvaha</p>
+    </footer>
+    <script>
+      let startX;
+      document.addEventListener('touchstart',function(e) {
+        startX =e.touches[0].clientX;
+      });
+      document.addEventListener('touchend',function(e) {
+        let endX = e.changedTouches[0].clientX;
+        if (startX - endX > 100) {
+          //swiped left to right
+          window.location.href = 'services.html';
+        }
+      });
+    </script>
+  </body>
+</html>

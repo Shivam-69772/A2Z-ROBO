@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Affordable and professional web design">
+	  <meta name="keywords" content="web design, affordable web design, professional web design">
+  	<meta name="author" content="Brad Traversy">
+    <title>A2Z ROBO | Code</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="img/A2ZLOGO.png">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div id="branding">
+          <h1><span class="highlight">A2Z</span> ROBO</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li class="current"><a href="services.html">Code</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!--<section id="newsletter">
+      <div class="container">
+        <h1>Welcome to A2Z ROBO</h1>
+        
+      </div>
+    </section>-->
+
+    <section id="main">
+      <div class="container">
+        <article id="main-col">
+          <h1 class="page-title">Projects Code</h1>
+          <ul id="services">
+            <li>
+              <h2>LED BRIGHTNESS CONTROLLER</h2>
+              <h4>Requirement</h4>
+                <p class="comp">1. Node MCU ESP8266</p>
+                <p class="comp">2. 4V LED (Any Color)</p>
+                <p class="comp">3. 2x 220 Ohm Resistor</p>
+                <p class="comp">4. TTP223 Touch Sensor</p>
+                <p class="comp">5. Jumber Wire</p>
+
+            </li>
+            <li>
+              <button onclick="copyText()" class="copy">&lt;/&gt; Get Code</button>
+              <!--<button class="copy"><a href="https://drive.google.com/file/d/190Gjzikl-lls_5HsvxOMksrNCshUyr5M/view?usp=drive_link">&lt;/&gt; Get Code</a></button>-->
+              <h3>LED BRIGHTNESS CONTROLLER</h3>
+              <pre>
+                <code id="textcode" class="code-block">
+int led = D7;
+int in = D2;
+int out =  0;
+
+void setup() {
+pinMode(in,INPUT_PULLUP);
+Serial.begin(115200);
+}
+
+void loop() {
+if(digitalRead(in)==LOW){
+  
+  if(out==0){
+   analogWrite(led,85);
+    Serial.println("led 85");
+    out=85;
+    delay(1000);
+  }else if(out==85){
+    analogWrite(led,170);
+  Serial.println("led 170");
+  out=170;
+   delay(1000);
+}else if(out==170){
+  analogWrite(led,255);
+  Serial.println("led 255");
+  out=255;
+   delay(1000);
+}else if(out==255){
+ analogWrite(led,0);
+  Serial.println("led 0");
+  out=0;
+   delay(1000);
+}
+}
+}
+                </code>
+              </pre>
+            </li>
+          </ul>
+        </article>
+
+       
+      </div>
+    </section>
+
+    <footer>
+      <p>A2Z ROBO, Copyright &copy; 2024</p>
+      <p id="trade">-Shivam.R.Kushvaha</p>
+    </footer>
+    <script>
+        function copyText() {
+            // Get the text from the pre tag
+            const preText = document.getElementById('textcode').innerText;
+            // Create a temporary textarea element to hold the text
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = preText;
+            document.body.appendChild(tempTextArea);
+            // Select the text inside the textarea
+            tempTextArea.select();
+            // Copy the text to the clipboard
+            document.execCommand('copy');
+            // Remove the temporary textarea element
+            document.body.removeChild(tempTextArea);
+            alert('Code copied to clipboard');
+        }
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Affordable and professional web design">
+	  <meta name="keywords" content="web design, affordable web design, professional web design">
+  	<meta name="author" content="Brad Traversy">
+    <title>A2Z ROBO | About</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="img/A2ZLOGO.png">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div id="branding">
+          <h1><span class="highlight">A2Z</span> ROBO</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Code</a></li>
+            <li class="current"><a href="about.html">About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section id="newsletter">
+      <div class="container">
+        <!--<button class="copy" onclick="send()">EMAIL@</button>-->
+        <button id="email" onclick="send()">
+          <div class="svg-wrapper-1">
+            <div class="svg-wrapper">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+              >
+                <path fill="none" d="M0 0h24v24H0z"></path>
+                <path
+                  fill="currentColor"
+                  d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+          <span>Send</span>
+        </button>
+        
+      </div>
+    </section>
+
+    <section id="main">
+      <div class="container">
+        <article id="main-col">
+          <h1 class="page-title">About Us</h1>
+          <!--<p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec varius auctor lacus nec feugiat. Phasellus sit amet ex ipsum. Praesent pharetra tincidunt tempor. Etiam velit eros, dapibus eget porta in, lacinia et magna. Nam eget eros non orci consectetur congue at ac augue. Proin eget arcu in enim feugiat ultricies. Curabitur maximus metus nec metus pretium viverra at et orci. Integer hendrerit ante ut placerat cursus.
+          </p>
+          <p class="dark">
+Aliquam eget pharetra diam. Nulla placerat lorem at turpis tempor, vel ultrices dui tincidunt. Proin quis egestas lorem. Mauris vehicula lectus odio, sit amet dictum justo feugiat a. Praesent id dictum lacus. Sed ullamcorper id erat ut dictum. Fusce porttitor lorem sapien, in aliquet sapien convallis et. Donec nec mauris nulla. Curabitur cursus semper odio, et hendrerit ante. Nunc at cursus ante. Maecenas gravida ligula ut efficitur suscipit. Nulla id turpis varius, pretium nunc sed, fermentum sem. Sed lacinia nunc non interdum pellentesque.
+          </p>-->
+        </article>
+
+        <aside id="sidebar">
+          <div class="dark">
+            <h3>What We Do</h3>
+            <p>Our Project involves developing smart systems that can automate various tasks and processes using the Internet of Things (IOT) technology. We aim to create solutions that improve efficiency, save energy, and enhance convenience by connecting and controlling devices remotely through the internate.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer>
+      <p>A2Z ROBO, Copyright &copy; 2024</p>
+      <p id="trade">-Shivam.R.Kushvaha</p>
+    </footer>
+    <script>
+      let startX;
+      document.addEventListener('touchstart',function(e) {
+        startX =e.touches[0].clientX;
+      });
+      document.addEventListener('touchend',function(e) {
+        let endX = e.changedTouches[0].clientX;
+        if (endX - startX > 100) {
+          //Swipe right to left
+          window.location.href = 'services.html';
+        }
+      });
+      function send(){
+        window.location.href='mailto:shivam69772@gmail.com?subject=Informe%20about%20Errors&body=Write%20here';
+      }
+    </script>
+  </body>
+</html>

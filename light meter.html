@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Affordable and professional web design">
+	  <meta name="keywords" content="web design, affordable web design, professional web design">
+  	<meta name="author" content="Brad Traversy">
+    <title>A2Z ROBO | Code</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="img/A2ZLOGO.png">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div id="branding">
+          <h1><span class="highlight">A2Z</span> ROBO</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li class="current"><a href="services.html">Code</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!--<section id="newsletter">
+      <div class="container">
+        <h1>Welcome to A2Z ROBO</h1>
+        
+      </div>
+    </section>-->
+
+    <section id="main">
+      <div class="container">
+        <article id="main-col">
+          <h1 class="page-title">Projects Code</h1>
+          <ul id="services">
+            <li>
+              <button onclick="light()" class="copy">&lt;/&gt; Get Code</button>
+              <h3>Webserver Light Meter</h3>
+              <pre>
+                <code id="light">
+#include &lt;ESP8266WiFi.h&gt;
+#include &lt;ESPAsyncWebSrv.h&gt;
+#include &lt;WebSocketsServer.h&gt;
+#include &lt;Ticker.h&gt;
+    
+int analogPin = A0;
+    
+void send_sensor();
+Ticker timer;
+    
+char webpage[] PROGMEM = R"=====(
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Light Monitor&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;style&gt;
+            body {
+                text-align: center;
+                font-size: 90px;
+            }
+            lable, #meter, h {
+                font-size: 80px;
+            }
+
+                rotate: 270deg;
+                margin-top: 200px;
+            }
+            #percentage {
+                margin-top: 0px;
+            }
+            meter::-webkit-meter-bar{
+                
+            }
+            meter::-webkit-meter-optimum-value{
+                background: linear-gradient(0.25turn, red ,yellow);
+            }
+        &lt;/style&gt;
+        &lt;body&gt;
+            &lt;lable&gt;LIGHT&lt;/lable&gt;
+            &lt;br/&gt;
+            &lt;h id="percentage"&gt;%&lt;/h&gt;
+            &lt;br/&gt;
+            &lt;meter id="meter" min="0" max="1024" value="0"&gt; &lt;/meter&gt;
+        &lt;/body&gt;
+        &lt;script&gt;
+            var connection = new WebSocket('ws://'+location.hostname+':81/');
+            connection.onmessage = function(event){
+               var FullDATA = event.data;
+               console.log(FullDATA);
+               var data = JSON.parse(FullDATA);
+               light = data.light;
+               document.getElementById("meter").value = light;
+               document.getElementById("percentage").innerText = light;
+                console.log(light);
+            }
+        &lt;/script&gt;
+    &lt;/html&gt;
+    )=====";
+    
+    AsyncWebServer server(80);
+    WebSocketsServer webSocket(81);
+    void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length) {
+    
+        switch(type) {
+            case WStype_DISCONNECTED:
+                Serial.printf("[%u] Disconnected!\n", num);
+                break;
+            case WStype_CONNECTED:
+                {
+                    IPAddress ip = webSocket.remoteIP(num);
+                    Serial.printf("[%u] Connected from %d.%d.%d.%d url: %s\n", num, ip[0], ip[1], ip[2], ip[3], payload);
+            
+            // send message to client
+            webSocket.sendTXT(num, "Connected");
+                }
+                break;
+            case WStype_TEXT:
+               Serial.printf("[%u] get Text: %s\n", num, payload);
+               String message = String((char*)(payload));
+               Serial.println(message); 
+               }
+    }
+    
+    void notFound(AsyncWebServerRequest *request) {
+        request-&gt;send(404, "text/plain", "Not found");
+    }
+    void setup() {
+      Serial.begin(115200);
+     WiFi.softAP("LIGHT SENSOR","");
+      Serial.println("softap");
+      Serial.println("...");
+      Serial.println(WiFi.softAPIP());
+       server.on("/", [](AsyncWebServerRequest *request)
+
+        
+            request-&gt;send_P(200, "text/html", webpage );
+        });
+         server.onNotFound(notFound);
+          server.begin();
+          webSocket.begin();
+      webSocket.onEvent(webSocketEvent);
+      timer.attach(1,send_sensor);
+    }
+    
+    void loop() {
+     webSocket.loop();
+    }
+    void send_sensor(){
+      int light = analogRead(analogPin);
+      String JSON_Data = "{\"light\":";
+             JSON_Data += light;
+             JSON_Data +="}";
+             Serial.println(JSON_Data);
+             webSocket.broadcastTXT(JSON_Data);
+    }
+    
+
+                </code>
+              </pre>
+            </li>
+          </ul>
+        </article>
+
+       
+      </div>
+    </section>
+
+    <footer>
+      <p>A2Z ROBO, Copyright &copy; 2024</p>
+    </footer>
+    <script>
+        function light() {
+            // Get the text from the pre tag
+            const preText = document.getElementById('light').innerText;
+            // Create a temporary textarea element to hold the text
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = preText;
+            document.body.appendChild(tempTextArea);
+            // Select the text inside the textarea
+            tempTextArea.select();
+            // Copy the text to the clipboard
+            document.execCommand('copy');
+            // Remove the temporary textarea element
+            document.body.removeChild(tempTextArea);
+            alert('Code copied to clipboard');
+        }
+
+        /*function escapeHtml(unsafe) {
+          return unsafe
+          .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+        }
+        
+        document.addEventListener('DOMContentLoaded',(event) => {
+          const codeBlock = document.getElementById('light');
+          codeBlock.innerHTML = escapeHtml(codeBlock.innerText.trim());
+        });*/
+    </script>
+  </body>
+</html>

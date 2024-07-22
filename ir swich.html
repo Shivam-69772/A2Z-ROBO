@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Affordable and professional web design">
+	  <meta name="keywords" content="web design, affordable web design, professional web design">
+  	<meta name="author" content="Brad Traversy">
+    <title>A2Z ROBO | Code</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="img/A2ZLOGO.png">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div id="branding">
+          <h1><span class="highlight">A2Z</span> ROBO</h1>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li class="current"><a href="services.html">Code</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!--<section id="newsletter">
+      <div class="container">
+        <h1>Welcome to A2Z ROBO</h1>
+        
+      </div>
+    </section>-->
+
+    <section id="main">
+      <div class="container">
+        <article id="main-col">
+          <h1 class="page-title">Projects Code</h1>
+          <ul id="services">
+            <li>
+              <button onclick="ir()" class="copy">&lt;/&gt; Get Code</button>
+              <h3>4 Channel IR Swich With EEPROM</h3>
+              <pre>
+                <code id="ir" class="code-block">
+#include <ESP8266WiFi.h> 
+#include <IRrecv.h>
+#include <IRutils.h>
+#include <EEPROM.h>
+  
+#define IR_PIN D5 // Define the pin for IR receiver
+  
+// These variables store current output state of LED
+  int outputRedState;
+  int outputGreenState;
+  int outputYellowState;
+  int outputBlueState;
+  int outputAllState; 
+  
+  // Assign output variables to GPIO pins
+  const int redLED = 5;//D1
+  const int greenLED = 4;//D2
+  const int yellowLED = 12; //D6
+  const int blueLED = 13;//D7
+
+  IRrecv irrecv(IR_PIN);
+  decode_results results; 
+  
+void setup() {
+  //read eeprom
+  EEPROM.begin(512);
+  outputRedState = EEPROM.read(1);
+  outputGreenState = EEPROM.read(2);
+  outputYellowState = EEPROM.read(3);
+  outputBlueState = EEPROM.read(4);
+        
+  irrecv.enableIRIn(); // Start the IR receiver
+  
+  // Initialize the output variables as outputs
+    pinMode(redLED, OUTPUT);
+    pinMode(greenLED, OUTPUT);
+    pinMode(yellowLED,OUTPUT);
+    pinMode(blueLED,OUTPUT);
+  // Set outputs to LOW
+    digitalWrite(redLED, outputRedState);
+    digitalWrite(greenLED,outputGreenState);
+    digitalWrite(yellowLED, outputYellowState);
+    digitalWrite(blueLED, outputBlueState); 
+}
+  
+void loop(){
+  digitalWrite(redLED, outputRedState);
+  digitalWrite(greenLED,outputGreenState);
+  digitalWrite(yellowLED, outputYellowState);
+  digitalWrite(blueLED, outputBlueState);
+  
+  if (irrecv.decode(&results)) {
+        // If an IR signal is received
+  Serial.println((unsigned long)results.value, HEX); // Print the received IR value
+    switch(results.value) {
+      case 0x1FE48B7: // Example IR hex code for turning AllLEDs on
+      if (outputRedState != 0 || outputGreenState != 0 || outputYellowState != 0 || outputBlueState != 0) {
+      outputAllState = 0;
+      outputRedState = 0;
+      outputGreenState = 0;
+      
+      outputYellowState = 0;
+      
+      outputBlueState = 0;
+      data();
+      Serial.println("All led on using ir");
+      } else {
+      outputAllState = 1;
+      outputRedState = 1;
+      
+      outputGreenState = 1;
+      
+      outputYellowState = 1;
+      
+      outputBlueState = 1;
+      data();
+      Serial.println("All led off using ir led");
+      }
+      break;
+      case 0x1FE50AF: // Example IR hex code for turning redLED on
+      if (outputRedState != 0){
+      outputRedState = 0;
+      data();
+      } else {
+      outputRedState = 1;
+      data();
+      }
+      break;
+      case 0x1FED827: // Example IR hex code for turning greenLED on
+      if (outputGreenState != 0) {
+      outputGreenState = 0;
+      data();
+      } else {
+      outputGreenState = 1;
+      data();
+      }
+      break;
+      case 0x1FEF807: // Example IR hex code for turning yellowLED on
+      if (outputYellowState != 0) {
+      outputYellowState = 0;
+      data();
+      } else {
+      outputYellowState = 1;
+      data();
+      }
+      break;
+      case 0x1FE30CF: // Example IR hex code for turning blueLED on
+      if (outputBlueState != 0) {
+      outputBlueState = 0;
+      data;
+      } else {
+      outputBlueState = 1;
+      data();
+      }
+      break;
+      // Add more cases for different IR commands as needed
+    }
+    irrecv.resume(); // Receive the next value
+  }
+}
+  
+void data(){
+  EEPROM.write(1,outputRedState);
+  EEPROM.write(2,outputGreenState);
+  EEPROM.write(3,outputYellowState);
+  EEPROM.write(4,outputBlueState);
+  EEPROM.commit();
+}
+  
+  
+                </code>
+              </pre>
+            </li>
+          </ul>
+        </article>
+
+       
+      </div>
+    </section>
+
+    <footer>
+      <p>A2Z ROBO, Copyright &copy; 2024</p>
+      <p id="trade">-Shivam.R.Kushvaha</p>
+    </footer>
+    <script>
+        function ir() {
+            // Get the text from the pre tag
+            const preText = document.getElementById('ir').innerText;
+            // Create a temporary textarea element to hold the text
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = preText;
+            document.body.appendChild(tempTextArea);
+            // Select the text inside the textarea
+            tempTextArea.select();
+            // Copy the text to the clipboard
+            document.execCommand('copy');
+            // Remove the temporary textarea element
+            document.body.removeChild(tempTextArea);
+            alert('Code copied to clipboard');
+        }
+    </script>
+  </body>
+</html>
