@@ -39,14 +39,29 @@
           <h1 class="page-title">Projects Code</h1>
           <ul id="services">
             <li>
+              <h2>4 Channel IR Swich With EEPROM</h2>
+              <h4>Requirement</h4>
+                <p class="comp">1. 1X Node MCU ESP8266</p>
+                <p class="comp">2. 4x 4V LED (Any Color)</p>
+                <p class="comp">3. 4x 220 Ohm Resistor</p>
+                <p class="comp">4. 1X IR Receive (sensor)</p>
+                <p class="comp">5. Jumber Wire</p>
+                <p class="comp">6. If Control 220V AC Appliances Use Relay      Module</p>
+
+            </li>
+            <li>
               <button onclick="ir()" class="copy">&lt;/&gt; Get Code</button>
               <h3>4 Channel IR Swich With EEPROM</h3>
               <pre>
                 <code id="ir" class="code-block">
-#include <ESP8266WiFi.h> 
-#include <IRrecv.h>
-#include <IRutils.h>
-#include <EEPROM.h>
+// A2Z ROBO
+// Programmed by Shivam.R.Kushvaha
+// Visit my YouTube Channel for more info - https://youtu.be/PbUfgnecyyE?si=Flm6uaV3oQLr8z0U 
+                  
+#include &lt;ESP8266WiFi.h&gt; 
+#include &lt;IRrecv.h&gt;
+#include &lt;IRutils.h&gt;
+#include &lt;EEPROM.h&gt;
   
 #define IR_PIN D5 // Define the pin for IR receiver
   
