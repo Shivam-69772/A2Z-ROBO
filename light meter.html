@@ -38,9 +38,11 @@
           <h1 class="page-title">Projects Code</h1>
           <ul id="services">
             <li>
-              <button onclick="light()" class="copy">&lt;/&gt; Get Code</button>
+              <!--<button onclick="light()" class="copy">&lt;/&gt; Get Code</button>-->
+              <a href="arduino code/LIGHT_METER.ino"><button class="copy">&lt;/&gt; Get Code</button></a>
               <h3>Webserver Light Meter</h3>
-              <pre>
+              <object data="arduino code/LIGHT_METER.ino" type="" width="100%" height="400" id="light"></object>
+              <!--<pre>
                 <code id="light">
 #include &lt;ESP8266WiFi.h&gt;
 #include &lt;ESPAsyncWebSrv.h&gt;
@@ -161,7 +163,7 @@ char webpage[] PROGMEM = R"=====(
     
 
                 </code>
-              </pre>
+              </pre>-->
             </li>
           </ul>
         </article>
