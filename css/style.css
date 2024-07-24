@@ -412,3 +412,8 @@ button.youtube-button:hover .svg-wrapper {
 button.youtube-button:hover svg {
   transform: rotate(45deg);
 }
+a {
+  all: unset; /* Resets all properties except unicode-bidi and direction */
+  color: inherit; /* Resets the color */
+  text-decoration: none; /* Removes underline */
+}
