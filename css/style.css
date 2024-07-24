@@ -116,11 +116,11 @@ header a:hover{
   margin-top:15px;
 }
 
-#newsletter input[type="email"]{
+/*#newsletter input[type="email"]{
   padding:4px;
   height:25px;
   width:250px;
-}
+}*/
 
 /* Boxes */
 #boxes{
@@ -198,7 +198,7 @@ footer{
 
   #newsletter , .quote button{
     display:block;
-    width:100%;
+    width:auto;
   }
 /*
   #newsletter form input[type="email"], .quote input, .quote textarea{
