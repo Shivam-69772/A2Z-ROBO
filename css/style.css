@@ -412,6 +412,19 @@ button.youtube-button:hover .svg-wrapper {
 button.youtube-button:hover svg {
   transform: rotate(45deg);
 }
+pre {
+  overflow: auto;
+  max-height: 500px; /* Adjust this value to control the vertical size */
+  max-width: 100%; /* Ensure it doesn't exceed the width of the container */
+  background-color: #f4f4f4;
+  padding: 10px;
+  border: 1px solid #ddd;
+  white-space: pre; /* Preserve whitespace and line breaks */
+}
+code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+}
 a {
   all: unset; /* Resets all properties except unicode-bidi and direction */
   color: inherit; /* Resets the color */
