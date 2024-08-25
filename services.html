@@ -102,6 +102,14 @@
           window.location.href = 'index.html';
         }
       });
+
+      const firstName = prompt("What is your first name?");
+      if(firstName == "" || firstName == null){
+        alert("You did not enter your first name.");
+      } else {
+        alert("Hi " + firstName +", always remember that you're special.");
+      }
+     
     </script>
   </body>
 </html>
