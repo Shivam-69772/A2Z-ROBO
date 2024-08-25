@@ -9,6 +9,21 @@
     <title>A2Z ROBO | Code</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" href="img/A2ZLOGO.png">
+    <style>
+      #main{
+        display: none;
+      }
+      #form{
+        text-align: center;
+        margin-top: 20%;
+        height: 25vh;
+      }
+      #userpass{
+        height: 20px;
+        width: auto;
+        font-size: medium;
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -26,12 +41,37 @@
       </div>
     </header>
 
-    <!--<section id="newsletter">
-      <div class="container">
+    <section id="newsletter">
+      <!--<div class="container">
         <h1>Welcome to A2Z ROBO</h1>
-        
-      </div>
-    </section>-->
+      </div>-->
+      <button class="youtube-button" onclick="yt()">
+        <div class="svg-wrapper-1">
+          <div class="svg-wrapper">
+            <svg
+              height="24"
+              width="24"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0 0h24v24H0z" fill="none"></path>
+              <path
+                d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                fill="currentColor"
+              ></path>
+            </svg>
+          </div>
+        </div>
+        <span>Watch on YouTube</span>
+      </button>
+    </section>
+
+    <section id="form">
+      <h2>Enter Password</h2>
+      <input type="password" id="userpass" placeholder="Enter Password">
+      <button onclick="checkpassword()">Submit</button>
+      <p id="errormsg" style="color: red;"></p>
+    </section>
 
     <section id="main">
       <div class="container">
@@ -41,10 +81,10 @@
             <li>
               <h2>4 Channel IR Swich With EEPROM</h2>
               <h4>Requirement</h4>
-                <p class="comp">1. 1X Node MCU ESP8266</p>
+                <p class="comp">1. 1x Node MCU ESP8266</p>
                 <p class="comp">2. 4x 4V LED (Any Color)</p>
                 <p class="comp">3. 4x 220 Ohm Resistor</p>
-                <p class="comp">4. 1X IR Receive (sensor)</p>
+                <p class="comp">4. 1x IR Receive (sensor)</p>
                 <p class="comp">5. Jumber Wire</p>
                 <p class="comp">6. If Control 220V AC Appliances Use Relay      Module</p>
               <object data="img/ESP8266-IR-LED-SWITCH.pdf" type="application/pdf" width="600" height="400"><p>It appears you don't have a PDF plugin for this browser. No biggie... you can <a href="img/ESP8266-IR-LED-SWITCH.pdf">click here to download the PDF file.</a></p></object>
@@ -204,6 +244,7 @@ void data(){
       <p id="trade">-Shivam.R.Kushvaha</p>
     </footer>
     <script>
+      
         function ir() {
             // Get the text from the pre tag
             const preText = document.getElementById('ir').innerText;
@@ -218,6 +259,20 @@ void data(){
             // Remove the temporary textarea element
             document.body.removeChild(tempTextArea);
             alert('Code copied to clipboard');
+        }
+        function yt(){
+          window.open("https://youtu.be/PbUfgnecyyE?si=yoV2ezIUePfh4boB","_blank");
+        }
+        function checkpassword(){
+          var userpass = document.getElementById("userpass").value;
+          var crpass = "123A2Z-ROBO";
+          if(userpass === crpass){
+            document.getElementById("form").style.display = "none";
+            document.getElementById("main").style.display ="block";
+          } else {
+            document.getElementById("errormsg").innerText = "Incorrect Password. please try again.";
+          }
+
         }
     </script>
   </body>
