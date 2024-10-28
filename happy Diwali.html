@@ -30,7 +30,7 @@ body {
 }
 
 .diya {
-	width: 50vw;
+	width: 25vw;
 	min-width: 200px;
 }
 
@@ -42,7 +42,7 @@ body {
 }
 
 .diyas img {
-	width: 15vw;
+	width: 10vw;
 	min-width: 150px;
 }
 
@@ -50,7 +50,7 @@ h1 {
 	position: relative;
 	font-family: sans-serif;
 	text-transform: uppercase;
-	font-size: 6.5em;
+	font-size: 2.5em;
 	letter-spacing: 4px;
 	overflow: hidden;
 	background: linear-gradient(90deg, #000, #ff0000, #ff8400, #000);
@@ -127,7 +127,7 @@ h1 {
 function creatediya() {
     const diya = document.createElement("div");
     diya.classList.add("diyasx");
-    diya.style.left = Math.random() * 100 + "vw";
+    diya.style.left = Math.random() * 150 + "vw";
     diya.innerText = "🪔";
     diya.style.animationDuration = Math.random() * 5 + "s";
     document.getElementById("main").appendChild(diya);
