@@ -1,0 +1,362 @@
+<html >
+    <head>
+        <title >happydiwali</title>
+        <style>
+            
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	position: relative;
+	background: #000;
+	color: #fff;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+}
+
+.container {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.diya {
+	width: 50vw;
+	min-width: 200px;
+}
+
+.diyas {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+
+.diyas img {
+	width: 15vw;
+	min-width: 150px;
+}
+
+h1 {
+	position: relative;
+	font-family: sans-serif;
+	text-transform: uppercase;
+	font-size: 5.5em;
+	letter-spacing: 4px;
+	overflow: hidden;
+	background: linear-gradient(90deg, #000, #ff0000, #ff8400, #000);
+	background-repeat: no-repeat;
+	background-size: 150%;
+	animation: animate 10s linear infinite;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: rgba(255, 255, 255, 0);
+	margin-top: 20px;
+}
+
+@keyframes animate {
+	0% {
+		background-position: 250%;
+	}
+
+	100% {
+		background-position: -250%;
+	}
+}
+
+.diyasx {
+	position: fixed;
+	top: -1vh;
+	font-size: 2rem;
+	transform: translateY(0);
+	animation: fall 3s linear forwards;
+	z-index: -1;
+}
+
+@keyframes fall {
+	to {
+		transform: translateY(105vh);
+	}
+}
+#trade {
+  text-align: end;
+  font-family: cursive;
+  color:#01a4f5;
+  font-size: 35px;
+}
+        </style>
+    </head>
+    <body >
+    
+<!---<canvas id="canvas"></canvas>-->
+<canvas id= "birthday"></canvas >
+<div class="container" id="main">
+    <div class="diya">
+        <img
+          src="https://res.cloudinary.com/freecodez/image/upload/v1698217682/images/zihj4cbkebe5cgiai7i1.webp"
+          alt="image"
+          width="100%"
+        />
+    </div>
+    <div class="diyas">
+        <img
+          src="https://happy-diwali.in/static/media/dia.2dea96fa2c3b8fc65c0d.gif"
+          alt="image"
+        />
+        <img
+          src="https://happy-diwali.in/static/media/dia.2dea96fa2c3b8fc65c0d.gif"
+          alt="image"
+        />
+        <img
+          src="https://happy-diwali.in/static/media/dia.2dea96fa2c3b8fc65c0d.gif"
+          alt="image"
+        />
+    </div>
+    <h1>Happy Diwali </br>From A2Z-ROBO</h1>
+    <p id="trade">-Shivam.R.Kushwaha</p>
+</div>
+<script>
+
+function creatediya() {
+    const diya = document.createElement("div");
+    diya.classList.add("diyasx");
+    diya.style.left = Math.random() * 150 + "vw";
+    diya.innerText = "🪔";
+    diya.style.animationDuration = Math.random() * 5 + "s";
+    document.getElementById("main").appendChild(diya);
+    setTimeout(() => {
+        diya.remove();
+    }, 5000);
+}
+setInterval(creatediya, 300);
+
+window.requestAnimFrame = (function () {
+    return (
+        window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        function (callback) {
+            window.setTimeout(callback, 1000 / 60);
+        }
+    );
+})();
+
+
+
+// helper functions
+const PI2 = Math.PI * 2
+const random = (min, max) => Math.random() * (max - min + 1) + min | 0
+const timestamp = _ => new Date().getTime()
+
+// container
+class Birthday {
+  constructor() {
+    this.resize()
+
+    // create a lovely place to store the firework
+    this.fireworks = []
+    this.counter = 0
+
+  }
+  
+  resize() {
+    this.width = canvas.width = window.innerWidth
+    let center = this.width / 2 | 0
+    this.spawnA = center - center / 4 | 0
+    this.spawnB = center + center / 4 | 0
+    
+    this.height = canvas.height = window.innerHeight
+    this.spawnC = this.height * .1
+    this.spawnD = this.height * .5
+    
+  }
+  
+  onClick(evt) {
+     let x = evt.clientX || evt.touches && evt.touches[0].pageX
+     let y = evt.clientY || evt.touches && evt.touches[0].pageY
+     
+     let count = random(3,5)
+     for(let i = 0; i < count; i++) this.fireworks.push(new Firework(
+        random(this.spawnA, this.spawnB),
+        this.height,
+        x,
+        y,
+        random(0, 260),
+        random(30, 110)))
+          
+     this.counter = -1
+     
+  }
+  
+  update(delta) {
+    ctx.globalCompositeOperation = 'hard-light'
+    ctx.fillStyle = `rgba(20,20,20,${ 7 * delta })`
+    ctx.fillRect(0, 0, this.width, this.height)
+
+    ctx.globalCompositeOperation = 'lighter'
+    for (let firework of this.fireworks) firework.update(delta)
+
+    // if enough time passed... create new new firework
+    this.counter += delta * 3 // each second
+    if (this.counter >= 1) {
+      this.fireworks.push(new Firework(
+        random(this.spawnA, this.spawnB),
+        this.height,
+        random(0, this.width),
+        random(this.spawnC, this.spawnD),
+        random(0, 360),
+        random(30, 110)))
+      this.counter = 0
+    }
+
+    // remove the dead fireworks
+    if (this.fireworks.length > 1000) this.fireworks = this.fireworks.filter(firework => !firework.dead)
+
+  }
+}
+
+class Firework {
+  constructor(x, y, targetX, targetY, shade, offsprings) {
+    this.dead = false
+    this.offsprings = offsprings
+
+    this.x = x
+    this.y = y
+    this.targetX = targetX
+    this.targetY = targetY
+
+    this.shade = shade
+    this.history = []
+  }
+  update(delta) {
+    if (this.dead) return
+
+    let xDiff = this.targetX - this.x
+    let yDiff = this.targetY - this.y
+    if (Math.abs(xDiff) > 3 || Math.abs(yDiff) > 3) { // is still moving
+      this.x += xDiff * 2 * delta
+      this.y += yDiff * 2 * delta
+
+      this.history.push({
+        x: this.x,
+        y: this.y
+      })
+
+      if (this.history.length > 20) this.history.shift()
+
+    } else {
+      if (this.offsprings && !this.madeChilds) {
+        
+        let babies = this.offsprings / 2
+        for (let i = 0; i < babies; i++) {
+          let targetX = this.x + this.offsprings * Math.cos(PI2 * i / babies) | 0
+          let targetY = this.y + this.offsprings * Math.sin(PI2 * i / babies) | 0
+
+          birthday.fireworks.push(new Firework(this.x, this.y, targetX, targetY, this.shade, 0))
+
+        }
+
+      }
+      this.madeChilds = true
+      this.history.shift()
+    }
+    
+    if (this.history.length === 0) this.dead = true
+    else if (this.offsprings) { 
+        for (let i = 0; this.history.length > i; i++) {
+          let point = this.history[i]
+          ctx.beginPath()
+          ctx.fillStyle = 'hsl(' + this.shade + ',100%,' + i + '%)'
+          ctx.arc(point.x, point.y, 1, 0, PI2, false)
+          ctx.fill()
+        } 
+      } else {
+      ctx.beginPath()
+      ctx.fillStyle = 'hsl(' + this.shade + ',100%,50%)'
+      ctx.arc(this.x, this.y, 1, 0, PI2, false)
+      ctx.fill()
+    }
+
+  }
+}
+
+let canvas = document.getElementById('birthday')
+let ctx = canvas.getContext('2d')
+
+let then = timestamp()
+
+let birthday = new Birthday
+window.onresize = () => birthday.resize()
+document.onclick = evt => birthday.onClick(evt)
+document.ontouchstart = evt => birthday.onClick(evt)
+
+  ;(function loop(){
+    requestAnimationFrame(loop)
+
+    let now = timestamp()
+    let delta = now - then
+
+    then = now
+    birthday.update(delta / 1000)
+    
+
+  })()
+
+window.onload = loop;
+
+$(document).ready(function () {
+    words = [
+        "peace",
+        "prosperity",
+        "happiness",
+        "coffee!",
+        "love",
+        "health",
+        "friendship",
+        "codes!",
+        "creativity",
+        "good times",
+    ];
+    $("#tagline").html(words[rand(count)]);
+
+    function rand(count) {
+        x = position;
+        position = Math.floor(Math.random() * count);
+        if (position != x) {
+            return position;
+        } else {
+            rand(count);
+        }
+    }
+
+    function newWord() {
+        position = rand(count);
+        $("#tagline").fadeOut(fadeSpeed, function () {
+            $(this).html(words[position]).fadeIn(fadeSpeed);
+        });
+        myLoop = setTimeout(function () {
+            newWord();
+        }, timer);
+    }
+
+    myLoop = setTimeout(function () {
+        newWord();
+    }, timer);
+
+    var timer = 2000,
+        fadeSpeed = 500;
+    var count = words.length;
+    var position, x, myLoop;
+});
+</script>
+    </body>
+</html>
